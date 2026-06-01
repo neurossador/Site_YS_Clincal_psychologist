@@ -10,7 +10,44 @@ const sections = [...document.querySelectorAll("main section[id]")];
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const WELCOME_KEY = "hmaruk-welcome-dismissed";
+const THEME_KEY = "hmaruk-theme";
 const CLINIC_EMAIL = "neurolex@inbox.ru";
+
+/* Светлая / тёмная тема */
+(function initThemeToggle() {
+  const toggle = document.getElementById("theme-toggle");
+  const root = document.documentElement;
+
+  function getTheme() {
+    return root.getAttribute("data-theme") === "dark" ? "dark" : "light";
+  }
+
+  function applyTheme(theme) {
+    root.setAttribute("data-theme", theme);
+    try {
+      localStorage.setItem(THEME_KEY, theme);
+    } catch {
+      /* ignore */
+    }
+    if (!toggle) return;
+    const isDark = theme === "dark";
+    toggle.setAttribute("aria-pressed", String(isDark));
+    toggle.setAttribute(
+      "aria-label",
+      isDark ? "Включить светлую тему" : "Включить тёмную тему"
+    );
+  }
+
+  applyTheme(getTheme());
+
+  toggle?.addEventListener("click", () => {
+    applyTheme(getTheme() === "dark" ? "light" : "dark");
+    if (nav?.classList.contains("is-open")) {
+      nav.classList.remove("is-open");
+      navToggle?.setAttribute("aria-expanded", "false");
+    }
+  });
+})();
 
 /* Page enter */
 requestAnimationFrame(() => {
