@@ -237,10 +237,61 @@ body.is-loaded .header--enter {
   color: #c5d9f5;
 }
 
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .nav {
   display: flex;
   align-items: center;
   gap: 1.75rem;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.theme-toggle__icon {
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+
+.theme-toggle__icon--moon {
+  display: none;
+}
+
+html[data-theme="dark"] .theme-toggle__icon--sun {
+  display: none;
+}
+
+html[data-theme="dark"] .theme-toggle__icon--moon {
+  display: block;
 }
 
 .nav a {
@@ -1521,6 +1572,13 @@ body.is-loaded .header--enter {
 
   .nav__cta {
     margin-top: 0.5rem;
+  }
+
+  .nav .theme-toggle {
+    width: 100%;
+    height: auto;
+    margin-top: 0.5rem;
+    padding: 0.85rem 1rem;
   }
 
   .nav-toggle[aria-expanded="true"] span:nth-child(1) {
