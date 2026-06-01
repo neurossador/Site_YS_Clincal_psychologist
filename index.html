@@ -1,8 +1,19 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    (function () {
+      var key = "hmaruk-theme";
+      var stored = localStorage.getItem(key);
+      var theme = stored === "dark" || stored === "light"
+        ? stored
+        : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
   <meta name="description" content="Хмарук Юлия Сергеевна — медицинский психолог, ассистент кафедры РостГМУ, МПЦ «Нейролекс». Психотравмы, тревожность, нарушения сна, ЭПИ. Ростов-на-Дону.">
   <title>Хмарук Юлия Сергеевна — клинический психолог | Ростов-на-Дону</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,19 +71,39 @@
         <span class="header__sep" aria-hidden="true"></span>
         <a class="logo" href="#top">Хмарук Юлия Сергеевна</a>
       </div>
-      <button class="nav-toggle" type="button" aria-label="Открыть меню" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <nav class="nav" aria-label="Основная навигация">
-        <a href="#about">Обо мне</a>
-        <a href="#documents">Документы</a>
-        <a href="#services">Услуги</a>
-        <a href="#approach">Подход</a>
-        <a href="#clinic">Клиника</a>
-        <a href="#contact" class="nav__cta">Записаться</a>
-      </nav>
+      <div class="header__actions">
+        <button
+          type="button"
+          class="theme-toggle"
+          id="theme-toggle"
+          aria-label="Включить тёмную тему"
+          aria-pressed="false"
+          title="Светлая / тёмная тема"
+        >
+          <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" fill="currentColor"/>
+            <g stroke="currentColor" stroke-width="2" fill="none">
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+            </g>
+          </svg>
+          <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path fill="currentColor" d="M21 14.5A8.5 8.5 0 0 1 9.5 3 7 7 0 1 0 21 14.5z"/>
+          </svg>
+        </button>
+        <button class="nav-toggle" type="button" aria-label="Открыть меню" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="nav" aria-label="Основная навигация">
+          <a href="#about">Обо мне</a>
+          <a href="#documents">Документы</a>
+          <a href="#services">Услуги</a>
+          <a href="#approach">Подход</a>
+          <a href="#clinic">Клиника</a>
+          <a href="#contact" class="nav__cta">Записаться</a>
+        </nav>
+      </div>
     </div>
   </header>
 
