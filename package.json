@@ -1,0 +1,17 @@
+{
+  "name": "hmaruk-neurolex-landing",
+  "version": "1.0.0",
+  "description": "Приветственный лендинг клинического психолога Хмарук Юлия Сергеевна (МПЦ «Нейролекс»)",
+  "private": true,
+  "scripts": {
+    "start": "npx --yes serve . -l 3000",
+    "dev": "npm run start"
+  },
+  "keywords": [
+    "landing",
+    "psychologist",
+    "neurolex"
+  ],
+  "author": "Хмарук Юлия Сергеевна",
+  "license": "UNLICENSED"
+}

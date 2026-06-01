@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Хмарук Юлия Сергеевна — медицинский психолог, ассистент кафедры РостГМУ, МПЦ «Нейролекс». Психотравмы, тревожность, нарушения сна, ЭПИ. Ростов-на-Дону.">
+  <title>Хмарук Юлия Сергеевна — клинический психолог | Ростов-на-Дону</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preload" href="images/photo.jpg" as="image">
+  <link rel="icon" href="https://static.tildacdn.com/tild6330-3661-4538-b733-376234343637/favicon_136277.ico" type="image/x-icon">
+</head>
+<body>
+  <div id="welcome" class="welcome" role="dialog" aria-modal="true" aria-labelledby="welcome-title" hidden>
+    <div class="welcome__backdrop" data-welcome-close></div>
+    <div class="welcome__panel">
+      <p class="welcome__kicker">МПЦ «Нейролекс»</p>
+      <h2 id="welcome-title">Добро пожаловать</h2>
+      <p class="welcome__text">
+        Меня зовут <strong>Хмарук Юлия Сергеевна</strong>. На этом сайте — кратко обо мне,
+        услугах и записи на приём в клинике в Ростове-на-Дону (очно и онлайн).
+      </p>
+      <ul class="welcome__list">
+        <li>22 года клинической практики</li>
+        <li>Премия ПроДокторов 2025 — I место</li>
+        <li>Кировский пр-т, 48 · вход со стороны ул. Суворова</li>
+      </ul>
+      <div class="welcome__actions">
+        <button type="button" class="btn btn--primary" data-welcome-close>На сайт</button>
+        <a class="btn btn--ghost" href="#contact" data-welcome-close>Записаться</a>
+      </div>
+      <label class="welcome__remember">
+        <input type="checkbox" id="welcome-skip" checked>
+        Больше не показывать
+      </label>
+    </div>
+  </div>
+
+  <div class="scroll-progress" aria-hidden="true"><span class="scroll-progress__bar"></span></div>
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb orb--1"></span>
+    <span class="orb orb--2"></span>
+    <span class="orb orb--3"></span>
+  </div>
+
+  <header class="header header--enter" id="top">
+    <div class="container header__inner">
+      <div class="header__brand">
+        <a class="header__clinic" href="https://neurolex-center.ru/" target="_blank" rel="noopener noreferrer">
+          <img
+            class="header__clinic-logo"
+            src="https://static.tildacdn.com/tild6430-3738-4635-a366-326162386435/_5.png"
+            alt="Медико-психологический центр «Нейролекс»"
+            width="140"
+            height="40"
+          >
+        </a>
+        <span class="header__sep" aria-hidden="true"></span>
+        <a class="logo" href="#top">Хмарук Юлия Сергеевна</a>
+      </div>
+      <button class="nav-toggle" type="button" aria-label="Открыть меню" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="#about">Обо мне</a>
+        <a href="#documents">Документы</a>
+        <a href="#services">Услуги</a>
+        <a href="#approach">Подход</a>
+        <a href="#clinic">Клиника</a>
+        <a href="#contact" class="nav__cta">Записаться</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <p class="hero__label animate-in" data-delay="0">МПЦ «Нейролекс» · клинический психолог</p>
+          <h1 class="animate-in" data-delay="1">Понять, что с вами происходит — и найти решение</h1>
+          <p class="hero__lead animate-in" data-delay="2">
+            Я не предлагаю «позитивное мышление» и абстрактные советы. Сначала точная диагностика,
+            затем научно обоснованные методы — чтобы вернуть контроль над жизнью.
+          </p>
+          <div class="hero__stats animate-in" data-delay="3">
+            <div class="stat">
+              <span class="stat__value" data-count="22">0</span>
+              <span class="stat__label">года стажа</span>
+            </div>
+            <div class="stat">
+              <span class="stat__value">5.0</span>
+              <span class="stat__label">рейтинг</span>
+            </div>
+            <div class="stat">
+              <span class="stat__value" data-count="40">0</span>
+              <span class="stat__label">отзывов</span>
+            </div>
+          </div>
+          <div class="hero__actions animate-in" data-delay="4">
+            <a class="btn btn--primary" href="#contact">Записаться на приём</a>
+            <a class="btn btn--ghost" href="https://neurolex-center.ru/" target="_blank" rel="noopener noreferrer">Сайт клиники</a>
+          </div>
+        </div>
+        <figure class="hero__visual animate-in animate-in--scale hero__visual--parallax" data-delay="2">
+          <div class="hero__frame hero__frame--shine">
+            <img
+              class="hero__photo"
+              src="images/photo.jpg"
+              alt="Хмарук Юлия Сергеевна — клинический психолог, МПЦ «Нейролекс»"
+              width="380"
+              height="475"
+              fetchpriority="high"
+            >
+          </div>
+          <figcaption class="hero__badge">
+            <a href="#award">Премия ПроДокторов 2025 · I место</a>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container about">
+        <div class="section__head reveal reveal-line">
+          <h2>Обо мне</h2>
+          <p class="section__subtitle">Ведущий специалист МПЦ «Нейролекс»</p>
+        </div>
+        <div class="about__grid">
+          <div class="about__text reveal reveal--left reveal-stagger-text">
+            <p class="reveal-child">
+              Здравствуйте! Меня зовут <strong>Хмарук Юлия Сергеевна</strong>.
+            </p>
+            <p class="reveal-child">
+              Ассистент кафедры психотерапии и медицинской психологии РостГМУ,
+              MA in Counselling (The University of Manchester), медицинский психолог.
+              Член Российской психотерапевтической ассоциации. Руковожу клинико-диагностическим
+              отделением в медико-психологическом центре «Нейролекс».
+            </p>
+            <p class="reveal-child">
+              Ведущий специалист в области медико-психологической помощи при психотравмах
+              у детей, подростков и взрослых (после гибели близких, после ДТП и ЧС, домашнего
+              насилия, измены, развода, разрыва и др.), а также в области нарушений сна,
+              тревожности, страхов, гневливости, обиды, критики себя, тревоги за будущее и др.
+            </p>
+            <p class="reveal-child">
+              Провожу психодиагностику и экспериментально-психологическое исследование (ЭПИ)
+              с письменным заключением. Лауреат премии ПроДокторов 2025 в номинации
+              «Лучший детский психолог г. Ростова-на-Дону и Ростовской области».
+              <a href="https://prodoctorov.ru/rostov-na-donu/vrach/178157-stepanova/" target="_blank" rel="noopener noreferrer">Отзывы на ПроДокторов</a>.
+            </p>
+          </div>
+          <ul class="about__facts reveal-stagger">
+            <li class="reveal reveal--right" data-delay="1">
+              <span class="fact__title">Образование</span>
+              <span class="fact__text">ЯрГУ им. П.Г. Демидова — психология; РостГМУ — клиническая медицинская психология; MA in Counselling (The University of Manchester)</span>
+            </li>
+            <li class="reveal reveal--right" data-delay="2">
+              <span class="fact__title">Стаж</span>
+              <span class="fact__text">22 года: клиника, университет, военный и школьный психолог</span>
+            </li>
+            <li class="reveal reveal--right" data-delay="3">
+              <span class="fact__title">Подходы</span>
+              <span class="fact__text">КПТ, SFBT, клиент-центрированная и семейная терапия, нейропсихология</span>
+            </li>
+            <li class="reveal reveal--right" data-delay="4">
+              <span class="fact__title">Приём</span>
+              <span class="fact__text">МПЦ «Нейролекс», Кировский пр-т, 48 — очно и онлайн</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--docs" id="documents">
+      <div class="container">
+        <div class="section__head reveal reveal-line">
+          <h2>Документы и квалификация</h2>
+          <p class="section__subtitle">Дипломы, сертификаты и подтверждение образования</p>
+        </div>
+        <div class="docs__grid">
+          <figure class="docs__item reveal" data-delay="1">
+            <a href="images/doc-1.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="images/doc-1.jpg" alt="Документ об образовании и квалификации — 1" width="400" height="560" loading="lazy">
+            </a>
+          </figure>
+          <figure class="docs__item reveal" data-delay="2">
+            <a href="images/doc-2.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="images/doc-2.jpg" alt="Документ об образовании и квалификации — 2" width="400" height="560" loading="lazy">
+            </a>
+          </figure>
+          <figure class="docs__item reveal" data-delay="3">
+            <a href="images/doc-3.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="images/doc-3.jpg" alt="Документ об образовании и квалификации — 3" width="400" height="560" loading="lazy">
+            </a>
+          </figure>
+          <figure class="docs__item reveal" data-delay="4">
+            <a href="images/doc-4.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="images/doc-4.jpg" alt="Документ об образовании и квалификации — 4" width="400" height="560" loading="lazy">
+            </a>
+          </figure>
+          <figure class="docs__item reveal" data-delay="5">
+            <a href="images/doc-5.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="images/doc-5.jpg" alt="Документ об образовании и квалификации — 5" width="400" height="560" loading="lazy">
+            </a>
+          </figure>
+          <figure class="docs__item reveal" data-delay="6">
+            <a href="images/doc-manchester-ma.png" target="_blank" rel="noopener noreferrer">
+              <img
+                src="images/doc-manchester-ma.png"
+                alt="Магистерский диплом MA in Counselling — The University of Manchester, 2010"
+                width="800"
+                height="560"
+                loading="lazy"
+              >
+            </a>
+          </figure>
+        </div>
+        <p class="docs__note reveal">
+          Полный комплект документов размещён на
+          <a href="https://neurolex-center.ru/page23188630html/tproduct/374409828-840363882251-hmaruk-yuliya-sergeevna" target="_blank" rel="noopener noreferrer">странице специалиста на сайте клиники «Нейролекс»</a>.
+          Нажмите на изображение, чтобы открыть в полном размере.
+        </p>
+      </div>
+    </section>
+
+    <section class="section section--award" id="award">
+      <div class="container award">
+        <div class="award__grid">
+          <div class="award__content reveal">
+            <p class="award__label">Премия ПроДокторов 2025</p>
+            <h2>I место — выбор пациентов</h2>
+            <p class="award__text">
+              Хмарук Юлия Сергеевна — лауреат Премии ПроДокторов 2025 в номинации
+              «Выбор пациентов в рейтинге детских психологов Ростовской области»
+              (по состоянию на 1 ноября 2025 г.).
+            </p>
+            <a class="btn btn--ghost" href="https://prodoctorov.ru/rostov-na-donu/vrach/178157-stepanova/" target="_blank" rel="noopener noreferrer">
+              Смотреть профиль и отзывы
+            </a>
+          </div>
+          <figure class="award__cert reveal" data-delay="2">
+            <img
+              src="images/premia-prodoctorov-2025.png"
+              alt="Диплом Премии ПроДокторов 2025: Хмарук Юлия Сергеевна — I место в рейтинге детских психологов Ростовской области"
+              width="520"
+              height="740"
+              loading="lazy"
+            >
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--muted section--services" id="services">
+      <div class="container">
+        <div class="section__head reveal reveal-line">
+          <h2>Услуги</h2>
+          <p class="section__subtitle">Направления работы</p>
+        </div>
+        <div class="cards cards--animated">
+          <article class="card card--therapy reveal" data-delay="1">
+            <div class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-6-4.35-9-8.5C1.5 9.5 4 4 12 4s10.5 5.5 9 8.5-9 8.5z"/><circle cx="12" cy="11" r="2.5"/></svg>
+            </div>
+            <h3>Клиническая психотерапия</h3>
+            <p>Тревога, депрессия, панические атаки, ОКР, бессонница, СДВГ, психосоматика, СТОСН и др.</p>
+          </article>
+          <article class="card card--diag reveal" data-delay="2">
+            <div class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h5M8 16h8"/></svg>
+            </div>
+            <h3>Психодиагностика и ЭПИ</h3>
+            <p>Глубокий анализ личности, когнитивной и эмоционально-волевой сферы, IQ, письменное заключение.</p>
+          </article>
+          <article class="card card--child reveal" data-delay="3">
+            <div class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="7" r="3"/><path d="M6 21v-1a6 6 0 0 1 12 0v1"/></svg>
+            </div>
+            <h3>Детский и подростковый психолог</h3>
+            <p>Нейропсихологическая диагностика и коррекция, особенности развития, рекомендации для родителей.</p>
+          </article>
+          <article class="card card--family reveal" data-delay="4">
+            <div class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="8" r="2.5"/><circle cx="16" cy="8" r="2.5"/><path d="M4 20v-1a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v1"/></svg>
+            </div>
+            <h3>Семейная психокоррекция</h3>
+            <p>Конфликты в паре и с детьми, кризисы, беременность и рождение ребёнка, насилие в отношениях.</p>
+          </article>
+          <article class="card card--crisis reveal" data-delay="5">
+            <div class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v4M5 7l2 2M19 7l-2 2M5 17l2-2M19 17l-2-2"/><circle cx="12" cy="13" r="4"/></svg>
+            </div>
+            <h3>Кризисы и жизненные перемены</h3>
+            <p>Утрата близких, сложные решения, самооценка, выгорание, профориентация.</p>
+          </article>
+          <article class="card card--consult reveal" data-delay="6">
+            <div class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 10h8M8 14h5"/></svg>
+            </div>
+            <h3>Консультация</h3>
+            <p>Первичный приём: уточнение запроса, план работы. Очно — от 7 500 ₽, онлайн — от 8 500 ₽ (50 мин).</p>
+          </article>
+        </div>
+        <p class="services__note reveal">
+          При острых состояниях, угрожающих жизни, обратитесь в службу экстренной помощи: <strong>112</strong> или телефон доверия <strong>8-800-2000-122</strong>.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="approach">
+      <div class="container approach">
+        <div class="section__head reveal reveal-line">
+          <h2>Как я работаю</h2>
+          <p class="section__subtitle">Диагностика, наука и реальные шаги</p>
+        </div>
+        <ol class="steps">
+          <li class="reveal" data-delay="1">
+            <h3>Диагностика прежде всего</h3>
+            <p>Прежде чем работать с проблемой, её нужно точно определить — проверенными психодиагностическими методиками.</p>
+          </li>
+          <li class="reveal" data-delay="2">
+            <h3>Комплексный подход</h3>
+            <p>Сочетаю клиническую, когнитивно-поведенческую, семейную терапию и SFBT (терапию, ориентированную на решение).</p>
+          </li>
+          <li class="reveal" data-delay="3">
+            <h3>Без псевдонауки</h3>
+            <p>Только работающие техники, конкретные шаги и результат, который можно почувствовать.</p>
+          </li>
+          <li class="reveal" data-delay="4">
+            <h3>Совместная работа</h3>
+            <p>Объясняю, что с вами происходит, и помогаю справиться — в вашем темпе, с опорой на факты.</p>
+          </li>
+        </ol>
+        <blockquote class="quote reveal reveal--scale">
+          <p>Если вам важно понять себя, найти решение и вернуть контроль над жизнью — я помогу вам сделать этот шаг.</p>
+          <footer>— Юлия Сергеевна</footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="section section--gallery" id="clinic">
+      <div class="container">
+        <div class="section__head reveal reveal-line">
+          <h2>Клиника «Нейролекс»</h2>
+          <p class="section__subtitle">Медико-психологический центр в Ростове-на-Дону</p>
+        </div>
+        <div class="gallery gallery--three">
+          <figure class="gallery__item reveal reveal--left" data-delay="1">
+            <img
+              src="https://static.tildacdn.com/tild6433-3765-4566-a166-323062323839/A41Z4383-min.jpg"
+              alt="Медико-психологический центр «Нейролекс»"
+              width="600"
+              height="400"
+              loading="lazy"
+            >
+          </figure>
+          <figure class="gallery__item reveal reveal--scale" data-delay="2">
+            <img
+              src="https://static.tildacdn.com/tild3465-3066-4363-b838-646537356162/A41Z3937-min.jpg"
+              alt="Кабинеты и пространство центра «Нейролекс»"
+              width="600"
+              height="400"
+              loading="lazy"
+            >
+          </figure>
+          <figure class="gallery__item reveal reveal--right" data-delay="3">
+            <img
+              src="https://static.tildacdn.com/tild3334-3066-4365-b437-346137383639/A41Z4374-min.jpg"
+              alt="Медико-психологический центр «Нейролекс» в Ростове-на-Дону"
+              width="600"
+              height="400"
+              loading="lazy"
+            >
+          </figure>
+        </div>
+        <p class="gallery__note reveal">
+          Фото с официального сайта
+          <a href="https://neurolex-center.ru/" target="_blank" rel="noopener noreferrer">neurolex-center.ru</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section section--contact" id="contact">
+      <div class="container contact">
+        <div class="section__head reveal reveal-line">
+          <h2>Запись на приём</h2>
+          <p class="section__subtitle">Клиника «Нейролекс», Ростов-на-Дону</p>
+        </div>
+        <div class="contact__grid">
+          <div class="contact__info reveal">
+            <div class="contact__item">
+              <span class="contact__label">Телефоны клиники</span>
+              <p>
+                <a href="tel:+78632214108">8 (863) 221-41-08</a><br>
+                <a href="tel:+79034014108">8 (903) 401-41-08</a>
+              </p>
+            </div>
+            <div class="contact__item">
+              <span class="contact__label">Email</span>
+              <a href="mailto:neurolex@inbox.ru">neurolex@inbox.ru</a>
+            </div>
+            <div class="contact__item">
+              <span class="contact__label">Адрес</span>
+              <p>344022, г. Ростов-на-Дону<br>Кировский пр-т, 48, 1 этаж<br><em>вход со стороны ул. Суворова</em></p>
+            </div>
+            <div class="contact__item">
+              <span class="contact__label">Режим работы</span>
+              <p>Пн–Сб: 10:00–20:00 · Вс: выходной</p>
+            </div>
+            <div class="contact__item">
+              <span class="contact__label">Запись</span>
+              <p>
+                <a href="https://neurolex-center.ru/" target="_blank" rel="noopener noreferrer">neurolex-center.ru</a><br>
+                <a href="https://prodoctorov.ru/rostov-na-donu/vrach/178157-stepanova/" target="_blank" rel="noopener noreferrer">ПроДокторов</a>
+              </p>
+            </div>
+            <div class="contact__item">
+              <span class="contact__label">Стоимость</span>
+              <p>Очная консультация — <strong>от 7 500 ₽</strong><br>Онлайн — <strong>от 8 500 ₽</strong><br>Диагностика — от 11 000 ₽</p>
+            </div>
+            <p class="contact__price">Рейтинг <strong>5.0</strong> · <strong>40</strong> отзывов на ПроДокторов</p>
+          </div>
+          <form class="contact__form reveal" data-delay="2" action="#" method="post" novalidate>
+            <p class="form__status" role="status" aria-live="polite" hidden></p>
+            <label>
+              <span>Ваше имя</span>
+              <input type="text" name="name" required autocomplete="name" placeholder="Как к вам обращаться">
+            </label>
+            <label>
+              <span>Телефон</span>
+              <input type="tel" name="contact" required placeholder="+7 ...">
+            </label>
+            <label>
+              <span>Кратко о запросе</span>
+              <textarea name="message" rows="4" placeholder="Взрослый / ребёнок, с чем обращаетесь"></textarea>
+            </label>
+            <button type="submit" class="btn btn--primary btn--full">Отправить заявку</button>
+            <p class="form__hint">Нажимая кнопку, вы соглашаетесь на обработку данных для связи по заявке. Для срочной записи звоните в клинику.</p>
+          </form>
+        </div>
+        <div class="contact__map reveal reveal--scale">
+          <div class="map">
+            <div
+              id="neurolex-map"
+              class="map__ymap"
+              data-org-id="1320854907"
+              aria-label="Карта — МПЦ «Нейролекс», Кировский проспект, 48"
+            ></div>
+            <noscript>
+              <iframe
+                class="map__frame"
+                title="МПЦ «Нейролекс» на карте"
+                src="https://yandex.ru/map-widget/v1/?oid=1320854907&ll=39.731111%2C47.227341&z=19&lang=ru_RU"
+                width="100%"
+                height="420"
+                loading="lazy"
+                allowfullscreen
+              ></iframe>
+            </noscript>
+          </div>
+          <p class="map__caption">
+            <strong>Нейролекс</strong> — Кировский пр-т, 48, 1 этаж (вход со стороны ул. Суворова)
+            <a href="https://yandex.ru/maps/org/neyroleks/1320854907/?ll=39.731110%2C47.227341&z=16" target="_blank" rel="noopener noreferrer">Открыть в Яндекс Картах</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <button type="button" class="back-to-top" aria-label="Наверх" title="Наверх" hidden>
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 4l-8 8h5v8h6v-8h5z"/></svg>
+  </button>
+
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр документа" hidden>
+    <button type="button" class="lightbox__close" aria-label="Закрыть">&times;</button>
+    <img class="lightbox__img" src="" alt="">
+  </div>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__left">
+        <p>© 2026 Хмарук Юлия Сергеевна — клинический психолог</p>
+        <p class="footer__clinic">
+          Приём в <a href="https://neurolex-center.ru/" target="_blank" rel="noopener noreferrer">МПЦ «Нейролекс»</a>
+        </p>
+      </div>
+      <a href="#top">Наверх ↑</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
