@@ -465,10 +465,50 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 }
 
 .hero__lead {
-  margin: 0 0 2rem;
+  margin: 0 0 1.5rem;
   max-width: 32rem;
   color: var(--color-text-muted);
   font-size: 1.125rem;
+}
+
+.hero__topics {
+  margin-bottom: 1.75rem;
+}
+
+.hero__topics-label {
+  margin: 0 0 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+}
+
+.hero__chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.hero__chip {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-accent-dark);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(28, 36, 51, 0.04);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.hero__chips li:hover .hero__chip {
+  border-color: rgba(1, 83, 182, 0.25);
+  background: var(--color-accent-soft);
 }
 
 .hero__actions {
@@ -665,6 +705,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 .animate-in[data-delay="2"] { --delay: 0.24s; }
 .animate-in[data-delay="3"] { --delay: 0.36s; }
 .animate-in[data-delay="4"] { --delay: 0.48s; }
+.animate-in[data-delay="5"] { --delay: 0.6s; }
 
 @keyframes fade-up {
   to {
@@ -1111,10 +1152,41 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   color: var(--color-text);
 }
 
-.card p {
-  margin: 0;
+.card > p {
+  margin: 0 0 1.15rem;
   font-size: 0.98rem;
   color: var(--color-text-muted);
+}
+
+.card__details {
+  margin: 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.card__details > div + div {
+  margin-top: 0.85rem;
+}
+
+.card__details dt {
+  margin: 0 0 0.3rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent-dark);
+}
+
+.card__details dd {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+.card__details a {
+  font-weight: 600;
 }
 
 .card {
@@ -1178,7 +1250,8 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 }
 
 .card h3,
-.card p {
+.card > p,
+.card__details {
   position: relative;
   z-index: 1;
 }
@@ -1427,6 +1500,157 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   color: var(--color-text-muted);
 }
 
+.steps--visit {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.first-visit__note {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  border-left: 4px solid var(--color-accent-sage);
+}
+
+/* ЭПИ */
+.section--epi {
+  background:
+    radial-gradient(ellipse 55% 60% at 100% 20%, rgba(1, 83, 182, 0.07), transparent 55%),
+    linear-gradient(180deg, var(--color-bg-warm) 0%, var(--color-surface) 100%);
+}
+
+.epi__grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.epi__intro p {
+  margin: 0 0 1rem;
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+}
+
+.epi__intro p:last-child {
+  margin-bottom: 0;
+}
+
+.epi__cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.15rem;
+}
+
+.epi__card {
+  padding: 1.35rem 1.5rem;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-accent);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.epi__card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(1, 83, 182, 0.1);
+}
+
+.epi__card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  color: var(--color-accent-dark);
+}
+
+.epi__card p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+}
+
+.epi__cta {
+  margin: 2.5rem 0 0;
+  text-align: center;
+}
+
+/* FAQ */
+.faq__list {
+  max-width: 48rem;
+}
+
+.faq__item {
+  margin-bottom: 0.65rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.faq__item[open] {
+  border-color: rgba(1, 83, 182, 0.2);
+  box-shadow: 0 8px 28px rgba(1, 83, 182, 0.08);
+}
+
+.faq__item summary {
+  padding: 1.15rem 1.5rem;
+  padding-right: 2.75rem;
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.faq__item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq__item summary::after {
+  content: "+";
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-body);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--color-accent);
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+
+.faq__item[open] summary::after {
+  content: "−";
+}
+
+.faq__item summary:hover {
+  color: var(--color-accent-dark);
+}
+
+.faq__item summary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+}
+
+.faq__item p {
+  margin: 0;
+  padding: 0 1.5rem 1.25rem;
+  font-size: 0.98rem;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+}
+
 .quote {
   margin: 0;
   padding: 2.5rem 2.75rem 2.5rem 3.25rem;
@@ -1655,8 +1879,17 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
     grid-template-columns: 1fr 1fr;
   }
 
-  .steps {
+  .steps,
+  .steps--visit {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .epi__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .epi__cards {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1736,7 +1969,8 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   }
 
   .cards,
-  .steps {
+  .steps,
+  .steps--visit {
     grid-template-columns: 1fr;
   }
 
@@ -2095,6 +2329,17 @@ html[data-theme="dark"] .quote {
 html[data-theme="dark"] .hero__label {
   background: var(--color-surface);
   color: var(--color-accent-dark);
+}
+
+html[data-theme="dark"] .hero__chip {
+  background: var(--color-surface);
+  color: var(--color-accent-dark);
+}
+
+html[data-theme="dark"] .section--epi {
+  background:
+    radial-gradient(ellipse 55% 60% at 100% 20%, rgba(91, 163, 255, 0.1), transparent 55%),
+    linear-gradient(180deg, var(--color-bg-warm) 0%, var(--color-surface) 100%);
 }
 
 @media (prefers-reduced-motion: reduce) {
