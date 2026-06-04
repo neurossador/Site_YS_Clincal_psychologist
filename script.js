@@ -13,6 +13,30 @@ const WELCOME_KEY = "hmaruk-welcome-dismissed";
 const THEME_KEY = "hmaruk-theme";
 const CLINIC_EMAIL = "neurolex@inbox.ru";
 
+const FOCUSABLE_SELECTOR =
+  'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+function getFocusableElements(container) {
+  return [...container.querySelectorAll(FOCUSABLE_SELECTOR)].filter(
+    (el) => el.offsetParent !== null || el === document.activeElement
+  );
+}
+
+function trapFocus(container, e) {
+  if (e.key !== "Tab") return;
+  const focusable = getFocusableElements(container);
+  if (!focusable.length) return;
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  if (e.shiftKey && document.activeElement === first) {
+    e.preventDefault();
+    last.focus();
+  } else if (!e.shiftKey && document.activeElement === last) {
+    e.preventDefault();
+    first.focus();
+  }
+}
+
 /* Светлая / тёмная тема */
 (function initThemeToggle() {
   const toggle = document.getElementById("theme-toggle");
@@ -43,8 +67,7 @@ const CLINIC_EMAIL = "neurolex@inbox.ru";
   toggle?.addEventListener("click", () => {
     applyTheme(getTheme() === "dark" ? "light" : "dark");
     if (nav?.classList.contains("is-open")) {
-      nav.classList.remove("is-open");
-      navToggle?.setAttribute("aria-expanded", "false");
+      setNavOpen(false);
     }
   });
 })();
@@ -91,17 +114,27 @@ if (backToTop) {
 }
 
 /* Mobile nav */
+function setNavOpen(isOpen) {
+  if (!nav || !navToggle) return;
+  nav.classList.toggle("is-open", isOpen);
+  navToggle.setAttribute("aria-expanded", String(isOpen));
+  navToggle.setAttribute("aria-label", isOpen ? "Закрыть меню" : "Открыть меню");
+}
+
 if (navToggle && nav) {
   navToggle.addEventListener("click", () => {
-    const isOpen = nav.classList.toggle("is-open");
-    navToggle.setAttribute("aria-expanded", String(isOpen));
+    setNavOpen(!nav.classList.contains("is-open"));
   });
 
   nav.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      nav.classList.remove("is-open");
-      navToggle.setAttribute("aria-expanded", "false");
-    });
+    link.addEventListener("click", () => setNavOpen(false));
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && nav.classList.contains("is-open")) {
+      setNavOpen(false);
+      navToggle.focus();
+    }
   });
 }
 
@@ -140,10 +173,13 @@ document.querySelectorAll('a[href="#top"]').forEach((link) => {
   const skipCheckbox = document.getElementById("welcome-skip");
   if (!welcome) return;
 
+  let focusBeforeWelcome = null;
+
   function closeWelcome() {
     welcome.classList.remove("welcome--open");
     welcome.hidden = true;
     document.body.classList.remove("welcome-open");
+    welcome.removeEventListener("keydown", onWelcomeKeydown);
     if (skipCheckbox?.checked) {
       try {
         localStorage.setItem(WELCOME_KEY, "1");
@@ -151,24 +187,32 @@ document.querySelectorAll('a[href="#top"]').forEach((link) => {
         /* ignore */
       }
     }
+    if (focusBeforeWelcome && typeof focusBeforeWelcome.focus === "function") {
+      focusBeforeWelcome.focus();
+    }
+    focusBeforeWelcome = null;
+  }
+
+  function onWelcomeKeydown(e) {
+    if (e.key === "Escape" && welcome.classList.contains("welcome--open")) {
+      closeWelcome();
+      return;
+    }
+    trapFocus(welcome, e);
   }
 
   function openWelcome() {
+    focusBeforeWelcome = document.activeElement;
     welcome.hidden = false;
     welcome.classList.add("welcome--open");
     document.body.classList.add("welcome-open");
+    welcome.addEventListener("keydown", onWelcomeKeydown);
     const firstBtn = welcome.querySelector("[data-welcome-close]");
     firstBtn?.focus();
   }
 
   welcome.querySelectorAll("[data-welcome-close]").forEach((el) => {
     el.addEventListener("click", closeWelcome);
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && welcome.classList.contains("welcome--open")) {
-      closeWelcome();
-    }
   });
 
   let dismissed = false;
@@ -282,18 +326,20 @@ const revealObserver = new IntersectionObserver(
 
 revealEls.forEach((el) => revealObserver.observe(el));
 
-/* Animated counters */
+/* Счётчики: в HTML финальные значения; анимация только вверх, без показа 0 */
 function animateCounter(el, target, duration = 1400) {
   const start = performance.now();
-  const from = 0;
+  const from = Math.max(1, Math.floor(target * 0.55));
 
   function tick(now) {
     const progress = Math.min((now - start) / duration, 1);
     const eased = 1 - (1 - progress) ** 3;
-    el.textContent = Math.round(from + (target - from) * eased);
+    const value = Math.round(from + (target - from) * eased);
+    el.textContent = String(Math.min(value, target));
     if (progress < 1) {
       requestAnimationFrame(tick);
     } else {
+      el.textContent = String(target);
       el.classList.add("is-counted");
     }
   }
@@ -307,7 +353,16 @@ const counterObserver = new IntersectionObserver(
       if (!entry.isIntersecting) return;
       const el = entry.target;
       const target = Number(el.dataset.count);
-      if (!Number.isNaN(target)) animateCounter(el, target);
+      if (Number.isNaN(target)) return;
+      const current = Number(el.textContent);
+      if (current === target) {
+        el.classList.add("is-counted");
+      } else if (prefersReducedMotion) {
+        el.textContent = String(target);
+        el.classList.add("is-counted");
+      } else {
+        animateCounter(el, target);
+      }
       counterObserver.unobserve(el);
     });
   },
@@ -359,13 +414,26 @@ if (!prefersReducedMotion) {
 
   const img = lightbox.querySelector(".lightbox__img");
   const closeBtn = lightbox.querySelector(".lightbox__close");
+  let focusBeforeLightbox = null;
+  let lastTrigger = null;
 
-  function openLightbox(src, alt) {
+  function onLightboxKeydown(e) {
+    if (e.key === "Escape" && lightbox.classList.contains("lightbox--open")) {
+      closeLightbox();
+      return;
+    }
+    trapFocus(lightbox, e);
+  }
+
+  function openLightbox(src, alt, trigger) {
+    lastTrigger = trigger || null;
+    focusBeforeLightbox = document.activeElement;
     img.src = src;
     img.alt = alt || "";
     lightbox.hidden = false;
     lightbox.classList.add("lightbox--open");
     document.body.classList.add("lightbox-open");
+    lightbox.addEventListener("keydown", onLightboxKeydown);
     closeBtn?.focus();
   }
 
@@ -373,7 +441,15 @@ if (!prefersReducedMotion) {
     lightbox.classList.remove("lightbox--open");
     lightbox.hidden = true;
     document.body.classList.remove("lightbox-open");
+    lightbox.removeEventListener("keydown", onLightboxKeydown);
     img.src = "";
+    img.alt = "";
+    const restore = lastTrigger || focusBeforeLightbox;
+    if (restore && typeof restore.focus === "function") {
+      restore.focus();
+    }
+    lastTrigger = null;
+    focusBeforeLightbox = null;
   }
 
   document.querySelectorAll(".docs__item a").forEach((link) => {
@@ -381,19 +457,13 @@ if (!prefersReducedMotion) {
       const thumb = link.querySelector("img");
       if (!thumb) return;
       e.preventDefault();
-      openLightbox(thumb.src, thumb.alt);
+      openLightbox(thumb.src, thumb.alt, link);
     });
   });
 
   closeBtn?.addEventListener("click", closeLightbox);
   lightbox.addEventListener("click", (e) => {
     if (e.target === lightbox) closeLightbox();
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && lightbox.classList.contains("lightbox--open")) {
-      closeLightbox();
-    }
   });
 })();
 
