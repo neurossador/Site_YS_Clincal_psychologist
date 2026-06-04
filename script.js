@@ -114,6 +114,7 @@ function setNavOpen(isOpen) {
   nav.classList.toggle("is-open", isOpen);
   navToggle.setAttribute("aria-expanded", String(isOpen));
   navToggle.setAttribute("aria-label", isOpen ? "Закрыть меню" : "Открыть меню");
+  document.body.classList.toggle("nav-open", isOpen);
 }
 
 if (navToggle && nav) {
@@ -307,9 +308,21 @@ const revealObserver = new IntersectionObserver(
 revealEls.forEach((el) => revealObserver.observe(el));
 
 /* Счётчики: в HTML финальные значения; анимация только вверх, без показа 0 */
+function getCountTarget(el) {
+  const fromData = Number(el.dataset.count);
+  if (!Number.isNaN(fromData) && fromData > 0) return fromData;
+  const fromText = Number(String(el.textContent).trim());
+  if (!Number.isNaN(fromText) && fromText > 0) return fromText;
+  return 0;
+}
+
 function animateCounter(el, target, duration = 1400) {
   const start = performance.now();
-  const from = Math.max(1, Math.floor(target * 0.55));
+  const displayed = Number(String(el.textContent).trim());
+  const from =
+    !Number.isNaN(displayed) && displayed > 0
+      ? displayed
+      : Math.max(1, Math.floor(target * 0.55));
 
   function tick(now) {
     const progress = Math.min((now - start) / duration, 1);
@@ -332,9 +345,9 @@ const counterObserver = new IntersectionObserver(
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       const el = entry.target;
-      const target = Number(el.dataset.count);
-      if (Number.isNaN(target)) return;
-      const current = Number(el.textContent);
+      const target = getCountTarget(el);
+      if (!target) return;
+      const current = Number(String(el.textContent).trim());
       if (current === target) {
         el.classList.add("is-counted");
       } else if (prefersReducedMotion) {
