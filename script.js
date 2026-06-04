@@ -3,13 +3,12 @@ const navToggle = document.querySelector(".nav-toggle");
 const nav = document.querySelector(".nav");
 const form = document.querySelector(".contact__form");
 const progressBar = document.querySelector(".scroll-progress__bar");
-const heroVisual = document.querySelector(".hero__visual--parallax");
 const backToTop = document.querySelector(".back-to-top");
 const navLinks = nav ? [...nav.querySelectorAll('a[href^="#"]')] : [];
 const sections = [...document.querySelectorAll("main section[id]")];
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const WELCOME_KEY = "hmaruk-welcome-dismissed";
+const INTRO_KEY = "hmaruk-welcome-dismissed";
 const THEME_KEY = "hmaruk-theme";
 const CLINIC_EMAIL = "neurolex@inbox.ru";
 
@@ -98,10 +97,6 @@ window.addEventListener("scroll", () => {
   updateScrollProgress();
   updateBackToTop();
 
-  if (!prefersReducedMotion && heroVisual) {
-    const offset = Math.min(window.scrollY * 0.12, 80);
-    heroVisual.style.transform = `translateY(${offset}px)`;
-  }
 });
 
 updateScrollProgress();
@@ -167,63 +162,48 @@ document.querySelectorAll('a[href="#top"]').forEach((link) => {
   });
 });
 
-/* Приветственное окно */
-(function initWelcome() {
-  const welcome = document.getElementById("welcome");
-  const skipCheckbox = document.getElementById("welcome-skip");
-  if (!welcome) return;
+/* Нижняя информационная плашка */
+(function initSiteIntro() {
+  const intro = document.getElementById("site-intro");
+  if (!intro) return;
 
-  let focusBeforeWelcome = null;
-
-  function closeWelcome() {
-    welcome.classList.remove("welcome--open");
-    welcome.hidden = true;
-    document.body.classList.remove("welcome-open");
-    welcome.removeEventListener("keydown", onWelcomeKeydown);
-    if (skipCheckbox?.checked) {
+  function closeIntro(persist) {
+    intro.classList.remove("site-intro--visible");
+    intro.hidden = true;
+    document.body.classList.remove("has-site-intro");
+    if (persist) {
       try {
-        localStorage.setItem(WELCOME_KEY, "1");
+        localStorage.setItem(INTRO_KEY, "1");
       } catch {
         /* ignore */
       }
     }
-    if (focusBeforeWelcome && typeof focusBeforeWelcome.focus === "function") {
-      focusBeforeWelcome.focus();
+  }
+
+  intro.querySelectorAll("[data-intro-close]").forEach((el) => {
+    el.addEventListener("click", () => closeIntro(true));
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && intro.classList.contains("site-intro--visible")) {
+      closeIntro(true);
     }
-    focusBeforeWelcome = null;
-  }
-
-  function onWelcomeKeydown(e) {
-    if (e.key === "Escape" && welcome.classList.contains("welcome--open")) {
-      closeWelcome();
-      return;
-    }
-    trapFocus(welcome, e);
-  }
-
-  function openWelcome() {
-    focusBeforeWelcome = document.activeElement;
-    welcome.hidden = false;
-    welcome.classList.add("welcome--open");
-    document.body.classList.add("welcome-open");
-    welcome.addEventListener("keydown", onWelcomeKeydown);
-    const firstBtn = welcome.querySelector("[data-welcome-close]");
-    firstBtn?.focus();
-  }
-
-  welcome.querySelectorAll("[data-welcome-close]").forEach((el) => {
-    el.addEventListener("click", closeWelcome);
   });
 
   let dismissed = false;
   try {
-    dismissed = localStorage.getItem(WELCOME_KEY) === "1";
+    dismissed = localStorage.getItem(INTRO_KEY) === "1";
   } catch {
     dismissed = false;
   }
 
   if (!dismissed) {
-    setTimeout(openWelcome, prefersReducedMotion ? 0 : 400);
+    const delay = prefersReducedMotion ? 0 : 1200;
+    setTimeout(() => {
+      intro.hidden = false;
+      intro.classList.add("site-intro--visible");
+      document.body.classList.add("has-site-intro");
+    }, delay);
   }
 })();
 
@@ -387,24 +367,6 @@ if (navLinks.length && sections.length) {
   );
 
   sections.forEach((section) => sectionObserver.observe(section));
-}
-
-/* Лёгкий наклон карточек услуг при наведении */
-if (!prefersReducedMotion) {
-  document.querySelectorAll(".card.reveal").forEach((card) => {
-    card.addEventListener("mousemove", (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      card.style.setProperty("--tilt-x", `${y * -5}deg`);
-      card.style.setProperty("--tilt-y", `${x * 5}deg`);
-    });
-
-    card.addEventListener("mouseleave", () => {
-      card.style.removeProperty("--tilt-x");
-      card.style.removeProperty("--tilt-y");
-    });
-  });
 }
 
 /* Лайтбокс для документов */
