@@ -17,6 +17,7 @@
   --font-heading: "Fraunces", "Georgia", serif;
   --font-sans: "Source Serif 4", "Georgia", serif;
   --font-ui: "Source Serif 4", system-ui, sans-serif;
+  --font-stat: "Open Sans", system-ui, sans-serif;
   --shadow: 0 16px 48px rgba(28, 36, 51, 0.1);
   --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 8px 28px rgba(28, 36, 51, 0.07);
   --shadow-photo: 0 28px 56px rgba(28, 36, 51, 0.16), 0 8px 20px rgba(1, 83, 182, 0.08);
@@ -442,6 +443,10 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   margin-top: 0.25rem;
 }
 
+.hero__actions .btn {
+  border-radius: 4px;
+}
+
 .hero__visual {
   display: flex;
   flex-direction: column;
@@ -477,6 +482,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   margin-bottom: 1.5rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--color-border);
+  font-family: var(--font-stat);
 }
 
 .stat {
@@ -486,15 +492,15 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 }
 
 .stat__value {
-  font-family: var(--font-heading);
-  font-size: 2.35rem;
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
+  font-family: var(--font-stat);
+  font-size: 2rem;
+  font-weight: 700;
   color: var(--color-accent);
   line-height: 1;
 }
 
 .stat__label {
+  font-family: var(--font-stat);
   font-size: 0.85rem;
   color: var(--color-text-muted);
   text-transform: uppercase;
