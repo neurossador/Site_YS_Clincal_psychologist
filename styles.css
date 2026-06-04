@@ -14,10 +14,9 @@
   --color-accent-terra: #a86b52;
   --color-border: rgba(28, 36, 51, 0.09);
   --color-highlight: #ebe4d8;
-  --font-heading: "Fraunces", "Georgia", serif;
-  --font-sans: "Source Serif 4", "Georgia", serif;
-  --font-ui: "Source Serif 4", system-ui, sans-serif;
-  --font-stat: "Open Sans", system-ui, sans-serif;
+  /* Заголовки — Fraunces; весь остальной текст — Source Serif 4 */
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-body: "Source Serif 4", "Georgia", serif;
   --shadow: 0 16px 48px rgba(28, 36, 51, 0.1);
   --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 8px 28px rgba(28, 36, 51, 0.07);
   --shadow-photo: 0 28px 56px rgba(28, 36, 51, 0.16), 0 8px 20px rgba(1, 83, 182, 0.08);
@@ -57,7 +56,7 @@ html {
 
 body {
   margin: 0;
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: 1.0625rem;
   line-height: 1.72;
   color: var(--color-text);
@@ -67,6 +66,20 @@ body {
     radial-gradient(ellipse 50% 40% at 50% 50%, rgba(168, 107, 82, 0.05), transparent 60%),
     linear-gradient(168deg, var(--body-gradient-start) 0%, var(--color-bg) 45%, var(--body-gradient-end) 100%);
   overflow-x: hidden;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
 }
 
 /* Текстура зерна */
@@ -246,7 +259,7 @@ body.is-loaded .header--enter {
 }
 
 .logo {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: 1.02rem;
   font-weight: 600;
   color: #fff;
@@ -317,6 +330,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 
 .nav a {
   position: relative;
+  font-family: var(--font-body);
   color: rgba(255, 255, 255, 0.9);
   font-weight: 600;
   font-size: 0.95rem;
@@ -352,7 +366,6 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   background: #fff;
   color: var(--color-accent) !important;
   border-radius: 999px;
-  font-family: var(--font-ui);
   transition: transform 0.25s var(--ease-out), box-shadow 0.25s ease, background 0.25s ease !important;
 }
 
@@ -406,7 +419,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   display: inline-block;
   margin: 0 0 1.15rem;
   padding: 0.4rem 0.95rem;
-  font-family: var(--font-ui);
+  font-family: var(--font-body);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -420,9 +433,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 
 .hero h1 {
   margin: 0 0 1.35rem;
-  font-family: var(--font-heading);
   font-size: clamp(2.15rem, 5vw, 3.15rem);
-  font-weight: 600;
   line-height: 1.12;
   letter-spacing: -0.02em;
   color: var(--color-text);
@@ -482,7 +493,6 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   margin-bottom: 1.5rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--color-border);
-  font-family: var(--font-stat);
 }
 
 .stat {
@@ -492,19 +502,20 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 }
 
 .stat__value {
-  font-family: var(--font-stat);
+  font-family: var(--font-display);
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
   color: var(--color-accent);
   line-height: 1;
 }
 
 .stat__label {
-  font-family: var(--font-stat);
   font-size: 0.85rem;
+  font-weight: 600;
   color: var(--color-text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
 }
 
 .hero__frame {
@@ -577,6 +588,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 
 .hero__badge a {
   display: inline-block;
+  font-family: var(--font-body);
   padding: 0.5rem 1.1rem;
   color: var(--color-accent-dark);
   background: rgba(255, 255, 255, 0.95);
@@ -777,7 +789,6 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   align-items: center;
   justify-content: center;
   padding: 0.9rem 1.75rem;
-  font-family: var(--font-ui);
   font-size: 0.98rem;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -859,7 +870,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   display: inline-block;
   margin: 0 0 0.75rem;
   padding: 0.4rem 0.95rem;
-  font-family: var(--font-ui);
+  font-family: var(--font-body);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -872,9 +883,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 
 .award__content h2 {
   margin: 0 0 1rem;
-  font-family: var(--font-heading);
   font-size: clamp(1.75rem, 3.5vw, 2.35rem);
-  font-weight: 700;
   line-height: 1.2;
   color: var(--color-accent-dark);
 }
@@ -922,9 +931,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   position: relative;
   display: block;
   margin: 0 0 0.75rem;
-  font-family: var(--font-heading);
   font-size: clamp(1.95rem, 4.2vw, 2.65rem);
-  font-weight: 600;
   line-height: 1.15;
   letter-spacing: -0.02em;
   color: var(--color-text);
@@ -984,7 +991,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 
 .fact__title {
   display: block;
-  font-family: var(--font-ui);
+  font-family: var(--font-body);
   font-weight: 600;
   color: var(--color-accent-dark);
   margin-bottom: 0.35rem;
@@ -1071,9 +1078,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 
 .card h3 {
   margin: 0 0 0.75rem;
-  font-family: var(--font-heading);
   font-size: 1.22rem;
-  font-weight: 600;
   color: var(--color-text);
 }
 
@@ -1373,7 +1378,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 .steps li::before {
   content: counter(step, decimal-leading-zero);
   display: block;
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: 2rem;
   font-weight: 700;
   color: var(--color-accent-light);
@@ -1399,7 +1404,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   background: var(--color-surface);
   color: var(--color-text);
   border-radius: var(--radius-lg);
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: clamp(1.25rem, 2.8vw, 1.55rem);
   font-weight: 500;
   font-style: italic;
@@ -1443,7 +1448,6 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 
 .quote footer {
   margin-top: 1rem;
-  font-family: var(--font-sans);
   font-size: 0.95rem;
   font-style: normal;
   opacity: 0.85;
@@ -1466,7 +1470,7 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
   font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   color: var(--color-accent);
   margin-bottom: 0.25rem;
 }
@@ -1508,7 +1512,6 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 .contact__form textarea {
   width: 100%;
   padding: 0.75rem 1rem;
-  font-family: var(--font-ui);
   font-size: 1rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
@@ -1799,18 +1802,16 @@ html[data-theme="dark"] .theme-toggle__icon--moon {
 
 .welcome__kicker {
   margin: 0 0 0.35rem;
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
   color: var(--color-accent);
 }
 
 .welcome__panel h2 {
   margin: 0 0 0.75rem;
-  font-family: var(--font-heading);
   font-size: 1.65rem;
-  font-weight: 600;
   color: var(--color-text);
 }
 
