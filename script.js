@@ -11,6 +11,7 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
 const INTRO_KEY = "hmaruk-welcome-dismissed";
 const THEME_KEY = "hmaruk-theme";
 const CLINIC_EMAIL = "neurolex@inbox.ru";
+const NAV_DESKTOP_MIN = 1181;
 
 const FOCUSABLE_SELECTOR =
   'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -65,9 +66,6 @@ function trapFocus(container, e) {
 
   toggle?.addEventListener("click", () => {
     applyTheme(getTheme() === "dark" ? "light" : "dark");
-    if (nav?.classList.contains("is-open")) {
-      setNavOpen(false);
-    }
   });
 })();
 
@@ -131,6 +129,20 @@ if (navToggle && nav) {
       setNavOpen(false);
       navToggle.focus();
     }
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= NAV_DESKTOP_MIN && nav.classList.contains("is-open")) {
+      setNavOpen(false);
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!nav.classList.contains("is-open")) return;
+    const target = e.target;
+    if (!(target instanceof Element)) return;
+    if (nav.contains(target) || navToggle.contains(target)) return;
+    setNavOpen(false);
   });
 }
 
@@ -278,10 +290,9 @@ if (form) {
     window.location.href = mailto;
 
     showFormStatus(
-      "Если почтовый клиент не открылся — позвоните в клинику: 8 (863) 221-41-08.",
-      "ok"
+      "Сейчас должна открыться почтовая программа. Если ничего не произошло — позвоните в клинику или напишите на email ниже.",
+      "info"
     );
-    form.reset();
 
     setTimeout(() => {
       btn.textContent = originalText;
