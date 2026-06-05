@@ -10,8 +10,8 @@
   --color-accent-mid: #2a4f7a;
   --color-accent-light: #4a6f9e;
   --color-accent-soft: rgba(1, 83, 182, 0.09);
-  --color-accent-sage: #6d8f82;
-  --color-accent-terra: #a86b52;
+  --color-accent-sage: #4a6f9e;
+  --color-accent-terra: #2a6fc9;
   --color-border: rgba(28, 36, 51, 0.09);
   --color-highlight: #ebe4d8;
   /* Заголовки — Fraunces; весь остальной текст — Source Serif 4 */
@@ -61,9 +61,9 @@ body {
   line-height: 1.72;
   color: var(--color-text);
   background:
-    radial-gradient(ellipse 85% 55% at 92% 8%, rgba(109, 143, 130, 0.14), transparent 52%),
+    radial-gradient(ellipse 85% 55% at 92% 8%, rgba(1, 83, 182, 0.1), transparent 52%),
     radial-gradient(ellipse 65% 45% at 4% 92%, rgba(1, 83, 182, 0.07), transparent 48%),
-    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(168, 107, 82, 0.05), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(74, 111, 158, 0.06), transparent 60%),
     linear-gradient(168deg, var(--body-gradient-start) 0%, var(--color-bg) 45%, var(--body-gradient-end) 100%);
   overflow-x: hidden;
 }
@@ -120,7 +120,7 @@ body.has-site-intro .back-to-top {
 .orb--1 {
   width: 380px;
   height: 380px;
-  background: rgba(109, 143, 130, 0.4);
+  background: rgba(1, 83, 182, 0.18);
   top: -8%;
   right: -4%;
 }
@@ -136,7 +136,7 @@ body.has-site-intro .back-to-top {
 .orb--3 {
   width: 240px;
   height: 240px;
-  background: rgba(168, 107, 82, 0.14);
+  background: rgba(74, 111, 158, 0.16);
   top: 48%;
   right: 24%;
 }
@@ -203,7 +203,7 @@ a:focus-visible {
   display: block;
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, var(--color-accent-sage), var(--color-accent));
+  background: linear-gradient(90deg, var(--color-accent-light), var(--color-accent));
   transition: width 0.12s ease-out;
 }
 
@@ -882,9 +882,9 @@ body.nav-open {
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-accent-terra);
-  background: rgba(168, 107, 82, 0.12);
-  border: 1px solid rgba(168, 107, 82, 0.2);
+  color: var(--color-accent-dark);
+  background: var(--color-accent-soft);
+  border: 1px solid rgba(1, 83, 182, 0.2);
   border-radius: 999px;
 }
 
@@ -931,7 +931,7 @@ body.nav-open {
   margin-bottom: 2.75rem;
   max-width: 38rem;
   padding-left: 1.25rem;
-  border-left: 3px solid var(--color-accent-sage);
+  border-left: 3px solid var(--color-accent);
 }
 
 .section__head h2 {
@@ -945,7 +945,7 @@ body.nav-open {
 }
 
 .section__head h2::after {
-  background: linear-gradient(90deg, var(--color-accent-sage), var(--color-accent));
+  background: linear-gradient(90deg, var(--color-accent-light), var(--color-accent));
 }
 
 .section__subtitle {
@@ -986,7 +986,7 @@ body.nav-open {
   background: var(--color-surface);
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
-  border-left: 4px solid var(--color-accent-sage);
+  border-left: 4px solid var(--color-accent);
   box-shadow: var(--shadow-card);
   transition: transform 0.35s var(--ease-out), box-shadow 0.35s ease;
 }
@@ -1080,15 +1080,15 @@ body.nav-open {
   background: var(--color-surface);
   border-radius: var(--radius);
   border: 1px solid var(--color-border);
-  border-left: 3px solid var(--color-accent-sage);
+  border-left: 3px solid var(--color-accent-light);
   box-shadow: var(--shadow-card);
   transition: transform 0.35s var(--ease-out), box-shadow 0.35s ease, border-color 0.3s ease;
 }
 
 .card--therapy { border-left-color: var(--color-accent); }
 .card--diag { border-left-color: var(--color-accent-mid); }
-.card--child { border-left-color: var(--color-accent-sage); }
-.card--family { border-left-color: var(--color-accent-terra); }
+.card--child { border-left-color: var(--color-accent-light); }
+.card--family { border-left-color: var(--color-accent); }
 .card--crisis { border-left-color: var(--color-accent-light); }
 .card--consult { border-left-color: var(--color-accent-dark); }
 
@@ -1352,7 +1352,7 @@ body.nav-open {
   color: var(--color-text-muted);
   background: var(--color-surface);
   border-radius: var(--radius);
-  border-left: 4px solid var(--color-accent-sage);
+  border-left: 4px solid var(--color-accent);
 }
 
 /* ЭПИ */
@@ -1530,7 +1530,7 @@ body.nav-open {
   top: 0;
   bottom: 0;
   width: 4px;
-  background: linear-gradient(180deg, var(--color-accent-sage), var(--color-accent));
+  background: linear-gradient(180deg, var(--color-accent-light), var(--color-accent));
   border-radius: 4px 0 0 4px;
 }
 
@@ -1652,7 +1652,7 @@ body.nav-open {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-accent-sage), var(--color-accent), var(--color-accent-terra));
+  background: linear-gradient(90deg, var(--color-accent-light), var(--color-accent), #fff);
 }
 
 .footer a {
@@ -2176,8 +2176,9 @@ body.nav-open {
 }
 
 .form__status--ok {
-  background: #e8f5e9;
-  color: #1b5e20;
+  background: #eef4fc;
+  color: var(--color-accent-dark);
+  border: 1px solid rgba(1, 83, 182, 0.18);
 }
 
 .form__status--err {
@@ -2204,8 +2205,8 @@ html[data-theme="dark"] {
   --color-accent-mid: #6ba8e8;
   --color-accent-light: #8bb8f0;
   --color-accent-soft: rgba(91, 163, 255, 0.14);
-  --color-accent-sage: #7fa896;
-  --color-accent-terra: #c48972;
+  --color-accent-sage: #6ba8e8;
+  --color-accent-terra: #4a9aff;
   --color-border: rgba(91, 163, 255, 0.14);
   --color-highlight: #1e2a3d;
   --body-gradient-start: #12161e;
@@ -2291,8 +2292,9 @@ html[data-theme="dark"] .site-intro__inner {
 }
 
 html[data-theme="dark"] .form__status--ok {
-  background: rgba(46, 125, 50, 0.2);
-  color: #a5d6a7;
+  background: rgba(91, 163, 255, 0.14);
+  color: #b8d4f5;
+  border-color: rgba(91, 163, 255, 0.25);
 }
 
 html[data-theme="dark"] .form__status--err {
