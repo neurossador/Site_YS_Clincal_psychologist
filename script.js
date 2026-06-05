@@ -318,6 +318,42 @@ const revealObserver = new IntersectionObserver(
 
 revealEls.forEach((el) => revealObserver.observe(el));
 
+/* Подсветка шагов «Первая консультация» при прокрутке */
+(function initStepProgress() {
+  const lists = document.querySelectorAll(".steps--progress");
+  if (!lists.length) return;
+
+  lists.forEach((list) => {
+    const steps = [...list.querySelectorAll("li")];
+    if (!steps.length) return;
+
+    function syncSteps() {
+      let activeIdx = -1;
+      steps.forEach((step, i) => {
+        if (step.classList.contains("is-inview")) activeIdx = i;
+      });
+
+      steps.forEach((step, i) => {
+        step.classList.toggle("is-active", i === activeIdx);
+        step.classList.toggle("is-past", activeIdx >= 0 && i < activeIdx);
+      });
+    }
+
+    const stepObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle("is-inview", entry.isIntersecting);
+        });
+        syncSteps();
+      },
+      { rootMargin: "-22% 0px -52% 0px", threshold: 0.12 }
+    );
+
+    steps.forEach((step) => stepObserver.observe(step));
+    syncSteps();
+  });
+})();
+
 /* Счётчики: в HTML финальные значения; анимация только вверх, без показа 0 */
 function getCountTarget(el) {
   const fromData = Number(el.dataset.count);
